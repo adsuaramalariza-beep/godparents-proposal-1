@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Godparent Proposal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .yes-btn { background: #4CAF50; color: white; }
+    .no-btn { background: #ccc; }
+    .hidden { display: none; }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main">
+  <img src="your-image.jpg" alt="Baby">
+  <p>
+    I'm looking for someone very special to guide me as I grow.<br><br>
+    Will you be my Ninong/Ninang and be part of my life as I take my first step in faith? 🤍<br><br>
+    I would be so lucky to have you by my side on my Baptism day. 🕊️
+  </p>
+  <button class="yes-btn" onclick="showForm()">Yes! I'm honored 🤍</button>
+  <button class="no-btn" onclick="showNo()">I'll cheer from afar 🤍</button>
+</div>
+
+<div class="container hidden" id="yesSection">
+  <h3>Yaaay! 🤍</h3>
+  <p>
+    My tiny heart is so happy you said YES! 🖤<br>
+    I'm so excited to have you as my Ninong/Ninang! ✨<br><br>
+    My Baptism details are still tentative for now, but don't worry—I'll send you another invite once everything is final! 🕊️
+  </p>
+
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
+  <br>
+  <button onclick="submitForm()">Submit</button>
+</div>
+
+<div class="container hidden" id="noSection">
+  <h3>Thank you 🤍</h3>
+  <p>
+    Thank you for letting me know. I still appreciate your love and support from afar. 🕊️
+  </p>
+</div>
+
+<script>
+  function showForm() {
+    document.getElementById('main').classList.add('hidden');
+    document.getElementById('yesSection').classList.remove('hidden');
+  }
+
+  function showNo() {
+    document.getElementById('main').classList.add('hidden');
+    document.getElementById('noSection').classList.remove('hidden');
+  }
+
+  function submitForm() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+
+    if (!name || !phone) {
+      alert('Please fill in both fields.');
+      return;
+    }
+
+    // Replace this URL with your Google Apps Script Web App URL
+    fetch('YOUR_GOOGLE_SCRIPT_URL', {
+      method: 'POST',
+      body: JSON.stringify({ name, phone }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(() => {
+      alert('Thank you! Your response has been recorded.');
+    })
+    .catch(() => {
+      alert('Error submitting form.');
+    });
+  }
+</script>
+
+</body>
+</html>
